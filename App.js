@@ -8,11 +8,14 @@ export default function App() {
   const selectFile = async () => {
     try {
       const file = await DocumentPicker.getDocumentAsync({
-        copyToCacheDirectory:true,
-        multiple:false,
-        type:'image/*'
+        copyToCacheDirectory: true,
+        multiple: false,
+        type: 'image/*'
       });
-      console.log(file);
+
+      if (file.type === "success") {
+        console.log(file.uri);
+      }
 
     } catch (err) {
       // Expo didn't build with iCloud, expo turtle fallback
@@ -27,7 +30,7 @@ export default function App() {
     <View style={styles.container}>
       <Button title="Ver archivos" onPress={async () => await selectFile()}>
 
-      
+
       </Button>
     </View>
   );
